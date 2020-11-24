@@ -6,3 +6,4 @@ Run the React code and start the chrome browser and disable web security
 
 press windows+R type in this command and go to localhost:3000
 chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
+These is because some requests are blocked by CORS policy
