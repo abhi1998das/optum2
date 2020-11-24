@@ -1,0 +1,6 @@
+This API uses SQL database
+Please provide the connection paramaters of you local SQL database and run the test.py.
+As the csv files are large it may take a long time to upload. So you can create the tables and import the csv files.
+The table definition are given in test.py.
+
+After uploading the data run the API
