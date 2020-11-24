@@ -1,0 +1,4 @@
+The API uses MYSQL database so you should provide the connection parameters and run the test.py to create the database and tables.
+To insert all the rows might take a lot of time. So you can import the csv after you create the tables. 
+The table definition is provided in the test.py.
+Without the database the Doctor search and Insurance Company search will not work.
