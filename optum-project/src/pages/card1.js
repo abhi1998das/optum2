@@ -6,7 +6,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import image6 from '../images/img7.png';
 
 const useStyles = makeStyles({
@@ -20,7 +22,7 @@ const useStyles = makeStyles({
 
 export default function MediaCard(props) {
   const classes = useStyles();
- const arr=['NAME','ADDRESS','CITY','PHONE','AMOUNT COVERED','AMOUNT UNCOVERED','REVENUE','COVERED ENCOUNTERS','UNCOVERED ENCOUNTERS','COVERED MEDICATIONS','UNCOVERED MEDICATIONS','COVERED PROCEDURES','UNCOVERED PROCEDURES','COVERED IMMUNIZATIONS','UNCOVERED IMMUNIZATIONS','UNIQUE CUSTOMERS','Quality of Life Scores AVG','MEMBER_MONTHS']
+ const arr=['NAME','ADDRESS','CITY','PHONE']
  const elem=()=>
  {
      var val=[]
@@ -43,6 +45,10 @@ export default function MediaCard(props) {
             Organization
           </Typography>
         <CardContent>
+        <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Rating</Typography>
+        <Rating name="read-only" value={props.value} readOnly />
+        </Box>
           
           {elem()}
         </CardContent>

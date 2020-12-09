@@ -29,53 +29,22 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 200,
       },
 }))
-const Phoneno=[["1-877-267-2323"], ["1-800-633-4227"], ["1-844-330-7799"], ["1-800-262-2583"], ["1-888-545-5205"], ["1-800-872-3862"],
-["1-800-997-1654"], ["1-800-331-1476"]]
-const City=[["Baltimore"], ["Louisville"], ["Chicago"], ["Minnetonka"], ["Hartford"], ["Bloomfield"], ["Indianapolis"]]
-const Name=[["Dual Eligible"], ["Medicare"], ["Medicaid"], ["Humana"], ["Blue Cross Blue Shield"], ["UnitedHealthcare"], ["Aetna"],["Cigna Health"], ["Anthem"], ["NO_INSURANCE"]]
+const City=[["LEOMINSTER"],["CAMBRIDGE"],["ATTLEBORO"],["LAWRENCE"],["HYANNIS"],["NORTHAMPTON"],["GREENFIELD"],["BOSTON"],["SOUTHBRIDGE"],["FALL RIVER"],["HOLYOKE"],["NEWBURYPORT"],["PALMER"],["BEVERLY"],["SALEM"],["BRIGHTON"],["PITTSFIELD"],["MARLBOROUGH"],["BROCKTON"],["CLINTON"],["PLYMOUTH"],["WORCESTER"],["LOWELL"],["WESTFIELD"],["SPRINGFIELD"],["MELROSE"],["TAUNTON"],["METHUEN"],["NEEDHAM"],["W CONCORD"],["MILFORD"],["GARDNER"],["AYER"],["SOUTH WEYMOUTH"],["NEWTON"],["WINCHESTER"],["MILTON"],["NORWOOD"],["FALMOUTH"],["BURLINGTON"],["FRAMINGHAM"],["NANTUCKET"],["OAK BLUFFS"],["GREAT BARRINGTON"],["ATHOL"],["Bedford"],["Jamaica Plain"],["Leeds"],["Fitchburg"],["Gloucester"],["Haverhill"],["Lynn"],["New Bedford"],["Quincy"],["Fairhaven"],["West Springfield"],["MARLBORO"],["SALISBURY"],["HOLLISTON"],["HOLDEN"],["NEWBURY"],["WATERTOWN"],["EASTHAMPTON"],["EVERETT"],["DANVERS"],["ACTON"],["ORANGE"],["NORTH READING"],["BROOKLINE"],["AMESBURY"],["WESTON"],["MENDON"],["WALPOLE"],["NORWELL"],["ROCKPORT"],["WESTBOROUGH"],["SHIRLEY"],["ROCKLAND"],["CARVER"],["LYNNFIELD"],["LAKEVILLE"],["NATICK"],["GROVELAND"],["DUXBURY"],["WEST BRIDGEWATER"],["KINGSTON"],["AGAWAM"],["WAYLAND"],["READING"],["CHELMSFORD"],["ANDOVER"],["HINGHAM"],["PITTSFILED"],["DARTMOUTH"],["SUNDERLAND"],["WESTMINSTER"],["MEDWAY"],["WESTPORT"],["GRAFTON"],["DEDHAM"],["BELCHERTOWN"],["PEMBROKE"],["LITTLETON"],["MEDFORD"],["DENNIS"],["SOMERVILLE"],["WEST NEWTON"],["NORTH ANDOVER"],["DRACUT"],["DOVER"],["LEVERETT"],["SHERBORN"],["SOUTH HADLEY"],["BRAINTREE"],["EAST BOSTON"],["SAUGUS"],["SHREWSBURY"],["BELLINGHAM"],["NORTH DARTMOUTH"],["EAST DENNIS"],["LUDLOW"],["TURNERS FALLS"],["SEEKONK"],["CANTON"],["WILBRAHAM"],["SWANSEA"],["MILLIS"],["MILLBURY"],["CARLISLE"],["REVERE"],["MATTAPOISETT"],["S DARTMOUTH"],["N ADAMS"],["WESTWOOD"],["CHATHAM"],["SPENCER"],["STONEHAM"],["MARSTONS MLS"],["YARMOUTH PORT"],["ROSLINDALE"],["LANESBOROUGH"],["WILMINGTON"],["MEDFIELD"],["CHESTNUT HILL"],["SOMERSET"],["BREWSTER"],["WEYMOUTH"],["COHASSET"],["SOUTHBOROUGH"],["IPSWICH"],["SHEFFIELD"],["ESSEX"],["WENHAM"],["MARION"],["GRANBY"],["MARBLEHEAD"],["HAMPDEN"],["WAKEFIELD"],["LONGMEADOW"],["ORLEANS"],["LINCOLN"],["BELMONT"],["LEXINGTON"],["FOXBOROUGH"],["SHARON"],["STOUGHTON"],["REHOBOTH"],["ROWLEY"],["HARVARD"],["AMHERST"],["NEWTON CENTER"],["SOUTHBORO"],["WEST BARNSTABLE"],["WELLFLEET"],["COTUIT"],["ADAMS"],["UPTON"],["HANOVER"],["SOUTH DENNIS"],["RICHMOND"],["BRIDGEWATER"],["W BARNSTABLE"],["MARSHFIELD"],["MALDEN"],["WEST TISBURY"],["BILLERICA"],["PROVINCETOWN"],["HOLBROOK"],["HOPKINTON"],["FEEDING HILLS"],["AUBURN"],["EAST FALMOUTH"],["PEABODY"],["LEICESTER"],["WARE"],["RAYNHAM"],["CHELSEA"],["WRENTHAM"],["WELLESLEY HILLS"],["MANSFIELD"],["EASTHAM"],["EASTON"],["NEWTON CENTRE"],["SOUTHAMPTON"],["WEST BOYLSTON"],["SHELBURNE FALLS"],["NORFOLK"],["MIDDLETON"],["ACUSHNET"],["SUDBURY"],["EAST HARWICH"],["CONCORD"],["ASHLAND"],["SWAMPSCOTT"],["WINTHROP"],["EAST LONGMEADOW"],["CHARLTEN"],["WILLIAMSTOWN"],["FRANKLIN"],["NORTHFIELD"],["WAREHAM"],["MAYNARD"],["PLAINVILLE"],["NORTHBOROUGH"],["TEWKSBURY"],["HUDSON"],["EAST DOUGLAS"],["SOUTHWICK"],["LUNENBURG"],["MONSON"],["ARLINGTON"],["PAXTON"],["TOPSFIELD"],["WESTHAMPTON"],["WEST WAREHAM"],["W WAREHAM"],["WOBURN"],["NORTH BROOKFIELD"],["CHICOPEE"],["NEWTONVILLE"],["DOUGLAS"],["OSTERVILLE"],["LANCASTER"],["BALDWINVILLE"],["BERKLEY"],["DORCHESTER"],["WEST ROXBURY"],["OXFORD"],["AVON"],["RUTLAND"],["WHATELY"],["WINCHENDON"],["WHITINSVILLE"],["S WEYMOUTH"],["STOW"],["WORTHINGTON"],["LEE"],["SCITUATE"],["RANDOLPH"],["FLORENCE"],["WHITMAN"],["DALTON"],["WALTHAM"],["ASHBURNHAM"],["SOUTH DARTMOUTH"],["W SPRINGFIELD"],["WEST YARMOUTH"],["TEMPLETON"],["BLACKSTONE"],["MONTGOMERY"],["DUDLEY"],["BOYLSTON"],["WELLESLEY"],["FOXBORO"],["UXBRIDGE"],["WEBSTER"],["HADLEY"],["MIDDLEBOROUGH"],["BOXFORD"],["EAST BRIDGEWATER"],["NORTON"],["EAST SANDWICH"],["ABINGTON"],["WESTBORO"],["NORTHBRIDGE"],["BRIMFIELD"],["HANSON"],["WILLIAMSBURG"],["FORESTDALE"],["NEWBURGPORT"],["MERRIMAC"],["BERLIN"],["ROXBURY CROSSING"],["POCASSET"],["CEDARVILLE"],["MASHPEE"],["BUZZARDS BAY"],["HARWICH"],["NORTH ATTLEBORO"],["TEATICKET"]]
 export default function DoctorPage(props) {
     const classes = useStyles();
     const theme = useTheme();
-    const [name, setname] = React.useState('');
     const [orgdetails, setorgdetails] = React.useState([]);
     
-    const handlenameChange = (event) => {
-      setname(event.target.value);
-    };
     const [city, setcity] = React.useState('');
 
     const handlecityChange = (event) => {
       setcity(event.target.value);
-    };
-    const [phone, setphone] = React.useState('');
-
-    const handlephoneChange = (event) => {
-      setphone(event.target.value);
     };
     const buttonClicked=()=>{
                 
         var xhr = new XMLHttpRequest();
         xhr.withCredentials = true;
 
-        var data="",p=0;
-        if(name!=""){
-        data+=" NAME = '"+name+"'";p=1;
-        }
-        if(city!="")
-        {
-            if(p==1)
-            data+=" AND ";
-            data+=" city = '"+city+"'";p=1;
-        }    
-        
-        if(phone!="")
-        {
-            if(p==1)
-            data+=" AND ";
-            data+=" phone = '"+phone+"'";p=1;
-        }    
-        
-        data+=";";
         xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4) {
             console.log(this.responseText);
@@ -83,10 +52,10 @@ export default function DoctorPage(props) {
             console.log(orgdetails)
         }
         });
-        if(data==";")
-        xhr.open("GET", "http://127.0.0.1:5000/?type=read&query=select NAME,ADDRESS,CITY,PHONE,AMOUNT_COVERED,AMOUNT_UNCOVERED,REVENUE,COVERED_ENCOUNTERS,UNCOVERED_ENCOUNTERS,COVERED_MEDICATIONS,UNCOVERED_MEDICATIONS,COVERED_PROCEDURES,UNCOVERED_PROCEDURES,COVERED_IMMUNIZATIONS,UNCOVERED_IMMUNIZATIONS,UNIQUE_CUSTOMERS,QOLS_AVG,MEMBER_MONTHS from optum.payers");
+        if(city==";")
+        xhr.open("GET", "http://127.0.0.1:5000/?type=read&query=select Name ,Address, City, Phone from optum.organizations");
         else
-        xhr.open("GET", "http://127.0.0.1:5000/?type=read&query=select NAME,ADDRESS,CITY,PHONE,AMOUNT_COVERED,AMOUNT_UNCOVERED,REVENUE,COVERED_ENCOUNTERS,UNCOVERED_ENCOUNTERS,COVERED_MEDICATIONS,UNCOVERED_MEDICATIONS,COVERED_PROCEDURES,UNCOVERED_PROCEDURES,COVERED_IMMUNIZATIONS,UNCOVERED_IMMUNIZATIONS,UNIQUE_CUSTOMERS,QOLS_AVG,MEMBER_MONTHS from optum.payers where "+data);
+        xhr.open("GET", "http://127.0.0.1:5000/?type=read&query=select Name ,Address, City, Phone from optum.organizations where CITY='"+city+"';");
 
         xhr.send();
     }
@@ -95,23 +64,8 @@ export default function DoctorPage(props) {
         <Paper elevation={3} spacing= {10} className={classes.paper}>
           <Grid container spacing={3}>
               <Grid item xs={12}>
-              <Typography align="center" variant="h6">Insurance Provider Search</Typography>
+              <Typography align="center" variant="h6">Organization Search</Typography>
               </Grid>
-            <Grid item xs={3} className={classes.items}>
-            <FormControl  className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Insurance Provider Name</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={name}
-                    onChange={handlenameChange}
-                  >
-                      {Name.map((namex) => (
-                    <MenuItem value={namex[0]}>{namex[0]}</MenuItem>
-                  ))}
-                  </Select>
-              </FormControl>
-            </Grid>
             <Grid item xs={3} className={classes.items}>
                 <FormControl  className={classes.formControl}>
                 <InputLabel id="demo-simple-select-label">City</InputLabel>
@@ -127,21 +81,6 @@ export default function DoctorPage(props) {
                   </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={3} className={classes.items}>
-            <FormControl  className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Phone no</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={city}
-                    onChange={handlephoneChange}
-                  >
-                      {Phoneno.map((name) => (
-                    <MenuItem value={name[0]}>{name[0]}</MenuItem>
-                  ))}
-                  </Select>
-              </FormControl>
-            </Grid>
             <Grid item align="center" xs={12} className={classes.items}>
             <Button variant="contained" color="primary" onClick={buttonClicked}>
               Submit
@@ -150,11 +89,11 @@ export default function DoctorPage(props) {
             
             {orgdetails.map((namex) => (
                 <Grid item xs={3} className={classes.items}>
-                    <Card1 data={namex}/>
+                    <Card1 data={namex} value={Math.random() * (5 - 2) + 2}/>
                 </Grid>
                   ))}
                   <Grid item align="center" xs={12} className={classes.items}>
-                  {orgdetails.length==0&&<Typography align="center" variant="h4">No Insurance Provider found</Typography>}
+                  {orgdetails.length==0&&<Typography align="center" variant="h4">No Organization found</Typography>}
                   </Grid>
             </Grid>
         </Paper>

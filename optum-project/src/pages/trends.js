@@ -1,7 +1,12 @@
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 import Grid from '@material-ui/core/Grid';
+import Button from "@material-ui/core/Button";
 import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import image2 from '../images/img2.png';
@@ -10,15 +15,30 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import Pressure from '../images/pressure-gauge.png';
 import Heartbeat from '../images/heartbeat.png';
 import Icon from '@material-ui/core/Icon';
+import Container from '@material-ui/core/Container';
 import ScoreIcon from '@material-ui/icons/Score';
+import Line from './line';
+import Bar from './bar';
+import Heart from './heart';
+import Doughnut from './dognut';
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',padding: theme.spacing(2),
+    },root1: {
+      maxWidth: 500,
+      minWidth: 400,
+    },
+    title: {
+      fontSize: 14
     },
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
-    },formControl: {
+    },paper1: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      width:'90%'
+  },formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
     },
@@ -68,44 +88,52 @@ export default function TrendPage(props) {
     }
   return (
     <div className={classes.root} >
-        <Paper elevation={3} spacing= {10} className={classes.paper}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Typography align="center" variant="h4">Real time Monitoring</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                        <Icon className={classes.icons}>
-                            <img src={image2} alt="this is car image" />
-                        </Icon>
-                    </Grid>
-                    <Grid item xs={6}>
-              <Grid container >
-                  
-              <Grid item xs={6}>
-              <Icon >
-                    <img src={Heartbeat} alt="this is car image" />
-                    </Icon>
-              </Grid>
-              <Grid item className={classes.item} xs={6}>
-                <Typography variant="h6"><strong>HeartBeat:</strong> {heart}</Typography>
-              </Grid>
-              <Grid item xs={6}>
-              <Icon >
-                            <img src={Pressure} alt="this is car image" />
-                        </Icon>
-              </Grid>
-                       
-              <Grid item  className={classes.item} xs={6}>
-                <Typography variant="h6"><strong>Pressure:</strong> {pressure_l} - {pressure_h}</Typography>
-              </Grid>
+        <Paper elevation={3} spacing= {1} className={classes.paper}>
+        <Grid container spacing={10} className={classes.paper1}>
                 
-              <Grid item  className={classes.item} xs={12}>
-                <Typography variant="h6"><strong>Health Score:</strong> {value}</Typography>
-              </Grid>
-            </Grid>
-            
-             </Grid>   
-            </Grid>
+                <Grid item xs={12}>
+              <Typography align="center"  variant="h4">Real time Monitoring</Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  
+              <Typography align="center"  variant="h5">Steps Walked</Typography>
+              <Bar/>
+                </Grid>
+                
+              
+                <Grid item xs={6}><Typography align="center"  variant="h5">Calories</Typography><Line/>
+                </Grid>
+                <Grid item xs={6}><Typography align="center"  variant="h5">Sleep Pattern</Typography><Doughnut/>
+                </Grid>
+                <Grid item xs={6}><Heart/>
+                </Grid>
+                
+                <Grid align="center" item xs={12}>
+                <Card className={classes.root1}>
+      <CardContent>
+        <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              You are graded from 0 to 5 (5 being the best )
+            </Typography>
+            <Typography variant="h5" color="primary" component="h2">
+              Health Score
+            </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+              you are above 80% candidates
+            </Typography>
+            <Typography style={{ color: green[500] }} variant="h4" component="p">
+              3.6
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small">Learn More</Button>
+          </CardActions>
+        </Card>
+                </Grid>
+                </Grid>
         </Paper>
     </div>
     )

@@ -86,6 +86,11 @@ export default function FormCost(props) {
     const handleageChange = (event) => {
       setage(event.target.value);
     };
+    const [bill, setbill] = React.useState('');
+
+    const handlebillChange = (event) => {
+      setbill(event.target.value);
+    };
     const handlelatChange = (event) => {
       setlat(event.target.value);
     };
@@ -121,11 +126,19 @@ export default function FormCost(props) {
       xhr.addEventListener("readystatechange", function() {
       if(this.readyState === 4) {
         var v=parseInt(this.responseText);
-        var p=Math.random() * (20 - 10) + 10;
+        var p=Math.random() * (20 - 10) + 10,l=(v-(v*p/100)),r=(v+(v*p*2/100));
         v="Total Estimated cost: "+ (v-(v*p/100)).toFixed(2).toString()+"$ - "+(v+(v*p/100)).toFixed(2).toString()+"$"
+        
+        if(bill>50&&bill>r)
+        v+=" (Suspicious bill detected) "
+        else
+        v+=" (Bill Ok) "
+        
+        
         props.changeres(v);
       }
       });
+
       xhr.open("POST", props.link+"?type=payer");
       xhr.setRequestHeader("Content-Type", "application/json");
 
@@ -230,6 +243,10 @@ export default function FormCost(props) {
             </Grid>
             <Grid item xs={6}>   
             <Paper />           
+            </Grid>
+            
+            <Grid item className={classes.griditem} xs={12}>
+              <TextField id="Bill"  className={classes.textfield} value={bill} onChange={handlebillChange} label="Cost Charged" />
             </Grid>
             <Grid item xs={6}>   
             <Button variant="contained" color="primary" onClick={handleClick}>

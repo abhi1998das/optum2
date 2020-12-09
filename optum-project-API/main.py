@@ -8,6 +8,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import RandomForestRegressor
 import numpy as np
+
+from sklearn import preprocessing
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+from sklearn.covariance import EllipticEnvelope
+from sklearn.ensemble import IsolationForest
+from sklearn.svm import OneClassSVM
+from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 import os.path
 app = Flask(__name__)
@@ -55,6 +63,51 @@ def predict_careplan(model, dicti):
   return model.predict(test_X[len(test_X)-1:len(test_X)])[0]
 
 
+
+def Encode(df):
+    columnsToEncode = list(df.select_dtypes(include=['category', 'object']))
+    le = LabelEncoder()
+    for feature in columnsToEncode:
+        try:
+            df[feature] = le.fit_transform(df[feature].astype(str))
+        except:
+            print('Error encoding ' + feature)
+    return df
+
+
+def train_data(sensitivity, data_train, modelID):
+    data = data_train
+    data = Encode(data)
+
+    min_max_scaler = preprocessing.StandardScaler()
+    np_scaled = min_max_scaler.fit_transform(data)
+    data = pd.DataFrame(np_scaled)
+
+    model = IsolationForest(contamination=float(sensitivity))
+    model.fit(data)
+    pickle.dump(model, open(modelID+'.pkl', 'wb'))
+
+    return model
+
+
+def test_data(data_test, modelID):
+    data = data_test.copy()
+    data = Encode(data)
+    model = pickle.load(open(modelID+'.pkl','rb'))
+
+    min_max_scaler = preprocessing.StandardScaler()
+    np_scaled = min_max_scaler.fit_transform(data)
+    data = pd.DataFrame(np_scaled)
+
+    data_test['anomaly'] = pd.Series(model.predict(data))
+    data_test['anomaly'] = data_test['anomaly'].map({1: 0, -1: 1})
+    print(data_test['anomaly'].value_counts())
+    return data_test
+
+
+
+
+
 @app.route('/', methods=['POST','GET'])
 def processRequest():
     type = request.args.get('type')
@@ -64,7 +117,10 @@ def processRequest():
         query = request.args.get('query')
         val=table.runReadQuery(query,table.connection)
         return json.dumps(val)
-
+    if type == 'medication':
+        data=pd.read_csv(os.path.abspath(os.path.dirname(os.path.abspath(__file__))) + "/csv/dataset_medication.csv",
+                     index_col=False)
+        return (data.to_json())
     if type == 'health':
         table1=Table('heartbeat')
         table2=Table('pressure')
@@ -97,6 +153,19 @@ def processRequest():
         model = pickle.load(pickle_off)
         v = predict_cost(model, di1)
         return str(v)
+    if type == "train":
+        modelID = request.args.get("modelID")
+        data_train = request.args.get("train")
+        data_sensi = request.args.get("sensitivity")
+        train_data(data_sensi, pd.read_csv(data_train), modelID)
+        return "Success"
+    if type == "train":
+        modelID = request.args.get("modelID")
+        data_test = request.args.get("test")
+        data_test = pd.read_csv(data_test)
+        data_test = data_test.sort_values(data_test.columns[0], ascending=True)
+        data_test = test_data(data_test, modelID)
+        return data_test.to_json()
     return "null"
 
 if __name__ == '__main__':
