@@ -58,7 +58,7 @@ export default function TrendPage(props) {
     const [pressure_l, setPressurel] = React.useState(80);
     const [pressure_h, setPressureh] = React.useState(120);
     const [value, setvalue] = React.useState(1);
-
+    
     const handleheartChange = (event) => {
       setheart(event.target.value);
     };
@@ -105,7 +105,7 @@ export default function TrendPage(props) {
                 </Grid>
                 <Grid item xs={6}><Typography align="center"  variant="h5">Sleep Pattern</Typography><Doughnut/>
                 </Grid>
-                <Grid item xs={6}><Heart/>
+                <Grid item xs={6}><Heart heart={heart}/>
                 </Grid>
                 
                 <Grid align="center" item xs={12}>

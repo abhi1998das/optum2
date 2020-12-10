@@ -23,10 +23,31 @@ const useStyles = makeStyles((theme) => ({
       },
 }));
 
-export default function App() {
+export default function App(props) {
     const classes = useStyles();
     const theme = useTheme();
- 
+    const [pressure, setPressure] = React.useState(80);
+    const [O, setO] = React.useState(120);
+    const [heart, setheart] = React.useState(72);
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setheart(Math.floor( heart-Math.random() * (8 - 4)))
+        setheart(Math.floor(Math.random() * (10 - 5) + heart))
+        if(heart<40)
+        setheart(52)
+        if(heart>140)
+        setheart(136)
+
+        setPressure(Math.floor( pressure-Math.random() * (5 - 2)))
+        setPressure(Math.floor(Math.random() * (10 - 5) + pressure))
+        if(pressure<60)
+        setPressure(69)
+        if(pressure>150)
+        setPressure(140)
+      }, 1000);
+      return () => clearInterval(interval);
+    }, []);
+    
   return (
     <div className={classes.root}>
         <Grid container spacing={3}>
@@ -42,7 +63,7 @@ export default function App() {
                 </Grid>
                 
                 <Grid item xs={6}>
-                <Typography align="left" variant="subtitle2">80 beats</Typography>
+                <Typography align="left" variant="subtitle2">{heart} beats</Typography>
                 </Grid>
                 <Grid item xs={12}>
                 <Typography align="center" variant="h6">Average Blood pressure</Typography>
@@ -53,7 +74,7 @@ export default function App() {
                 </Grid>
                 
                 <Grid item xs={6}>
-                <Typography align="left" variant="subtitle2">132</Typography>
+                <Typography align="left" variant="subtitle2">{pressure}</Typography>
                 </Grid>
                 <Grid item xs={12}>
                 <Typography align="center" variant="h6">Oxygen level</Typography>
