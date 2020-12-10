@@ -57,7 +57,7 @@ export default function TrendPage(props) {
     const [heart, setheart] = React.useState(72);
     const [pressure_l, setPressurel] = React.useState(80);
     const [pressure_h, setPressureh] = React.useState(120);
-    const [value, setvalue] = React.useState(3.6);
+    const [value, setvalue] = React.useState(1);
 
     const handleheartChange = (event) => {
       setheart(event.target.value);
@@ -129,8 +129,17 @@ export default function TrendPage(props) {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Learn More</Button>
+            <Button size="small" onClick={()=>{if(value==1)
+                                                  setvalue(0)
+                                                  else
+                                                  setvalue(1)
+                                                }}
+            >Learn More</Button>
           </CardActions>
+          
+          {value==0&&<Typography style={{ color: green[500] }} variant="subtitle1" component="p">
+            Congrats, you have been eating healthy food for sometime. You should pay a little more attention to daily exercise.
+          </Typography>}
         </Card>
                 </Grid>
                 </Grid>

@@ -34,7 +34,7 @@ export default function MediaCard(props) {
         />
         <CardContent>
         <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Rating</Typography>
+        <Typography component="legend">Rating  ({Math.floor(props.value1) })</Typography>
         <Rating name="read-only" value={props.value} readOnly />
         </Box>
           <Typography gutterBottom variant="h5" component="h2">

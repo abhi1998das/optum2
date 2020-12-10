@@ -162,7 +162,7 @@ export default function DoctorPage(props) {
             </Grid>
             {doctordetails.map((namex) => (
                 <Grid item xs={3} className={classes.items}>
-                    <Card value={Math.random() * (5 - 2) + 2} name={namex[0]} gender={namex[1]} speciality={namex[2]} address={namex[3]} city={namex[4]} state={namex[5]} utilization={namex[6]}/>
+                    <Card value={Math.random() * (5 - 2) + 2}  value1={Math.random() * (500 - 100) + 100} name={namex[0]} gender={namex[1]} speciality={namex[2]} address={namex[3]} city={namex[4]} state={namex[5]} utilization={namex[6]}/>
                 </Grid>
                   ))}
                   <Grid item align="center" xs={12} className={classes.items}>

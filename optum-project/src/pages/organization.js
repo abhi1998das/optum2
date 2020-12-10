@@ -89,7 +89,7 @@ export default function DoctorPage(props) {
             
             {orgdetails.map((namex) => (
                 <Grid item xs={3} className={classes.items}>
-                    <Card1 data={namex} value={Math.random() * (5 - 2) + 2}/>
+                    <Card1 data={namex} value={Math.random() * (5 - 2) + 2} value1={Math.random() * (500 - 100) + 100}/>
                 </Grid>
                   ))}
                   <Grid item align="center" xs={12} className={classes.items}>
